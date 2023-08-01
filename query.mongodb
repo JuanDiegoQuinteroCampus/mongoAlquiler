@@ -525,3 +525,11 @@ db.getCollection("sucursal").aggregate({
 // Mostrar todos los clientes registrados en la base de datos
 use("db_campus_alquiler");
 db.cliente.find({},{Nombre:1, Apellido:1, _id:0})
+// Obtener todos los automóviles disponibles para alquiler.
+
+use("db_campus_alquiler");
+db.alquiler.find({"Estado":"Disponible"});
+db.alquiler.find({Estado:{$eq:"Disponible"}});
+
+
+
