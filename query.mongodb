@@ -531,5 +531,32 @@ use("db_campus_alquiler");
 db.alquiler.find({"Estado":"Disponible"});
 db.alquiler.find({Estado:{$eq:"Disponible"}});
 
+// Listar todos los alquileres activos junto con los datos de los clientes relacionados. 
+use("db_campus_alquiler");
+db.getCollection("cliente").aggregate([{
+  $lookup:{
+    from:"alquiler",
+    localField: "_id",
+    foreignField:"ID_Cliente_id",
+    as: "alquiler_FK",
+  }},
+  {
+    $project: {
+      "alquiler_FK._id":0,
+      "alquiler_FK.ID_Cliente_id":0,
+      "alquiler_FK.ID_Automovil_id":0,
+      "alquiler_FK.Costo_Total":0,
+    }
+  },
+  {
+    $unwind:"$alquiler_FK"
+  },
+ { $match:{
+  "alquiler_FK.Estado":{$eq:"Disponible"}
+ }},
+
+  ]
+)
+
 
 
