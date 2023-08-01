@@ -1,0 +1,31 @@
+//Creo la base de datos, pero no aparece hasta que tambien cree una collection
+use("db_campus_alquiler");
+//creacion de collection
+db.createCollection("sucursal");
+db.createCollection("sucursal_automovil");
+
+//Insert data in the collection
+db.sucursal.insertOne({
+  _id: 1,
+  sucursal_id: 1,
+  Nombre: "Zona Franca",
+  Direccion: "Florida",
+  Telefono: 123456789,
+});
+use("db_campus_alquiler");
+db.sucursal_automovil.insertOne({
+  _id: 1,
+  sucursal_id: 1,
+  Cantidad_Disponible: 2,
+});
+
+//Relation collection
+use("db_campus_alquiler");
+db.getCollection("sucursal").aggregate({
+  $lookup: {
+    from: "sucursal_automovil",
+    localField: "_id",
+    foreignField: "sucursal_id",
+    as: "Sucursales",
+  },
+});
