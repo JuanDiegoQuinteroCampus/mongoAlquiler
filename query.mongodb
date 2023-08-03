@@ -714,3 +714,9 @@ db.getCollection("sucursal").aggregate([
 use("db_campus_alquiler");
 db.alquiler.find({ID_Alquiler: {$eq:3}},{Costo_Total:1});
 
+
+
+// Listar los clientes con el DNI específico. 
+use("db_campus_alquiler");
+db.cliente.find({DNI: {$eq:"285467912"}});
+
