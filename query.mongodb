@@ -720,3 +720,9 @@ db.alquiler.find({ID_Alquiler: {$eq:3}},{Costo_Total:1});
 use("db_campus_alquiler");
 db.cliente.find({DNI: {$eq:"285467912"}});
 
+
+
+// Mostrar todos los automóviles con una capacidad mayor a 5 personas. 
+use("db_campus_alquiler");
+db.automovil.find({Capacidad: {$gt:5}});
+
