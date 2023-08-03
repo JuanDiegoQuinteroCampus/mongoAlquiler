@@ -671,3 +671,10 @@ use("db_campus_alquiler");
 db.alquiler.find({ ID_Alquiler: 2 }); //Ojo corregir despues en otro momentooooooooooooooooooooo
 
 
+
+// Listar los empleados con el cargo de "Vendedor". 
+use("db_campus_alquiler");
+db.empleado.find({Cargo: {$eq:"Vendedor"}});
+
+
+
