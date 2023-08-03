@@ -746,3 +746,22 @@ use("db_campus_alquiler");
 db.empleado.find({ Cargo: { $in: ["Gerente","Asistente"] } });
 
 
+
+// Obtener los datos de los clientes que realizaron al menos un
+// alquiler.
+use("db_campus_alquiler");
+db.getCollection("alquiler").aggregate([
+  {
+    $match: {
+      alquiler: { $ne: [] }
+    }
+  },
+  {
+    $lookup: {
+      from: 'cliente',
+      localField: '_id',
+      foreignField: 'ID_Cliente',
+      as: 'alquileres'
+    }
+  },
+])
