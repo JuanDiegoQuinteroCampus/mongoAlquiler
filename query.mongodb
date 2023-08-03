@@ -739,3 +739,10 @@ use("db_campus_alquiler");
 db.reserva.find({ ID_Cliente_id: 3, Estado: 'Pendiente' });
 
 
+
+
+// Mostrar los empleados con cargo de "Gerente" o "Asistente".
+use("db_campus_alquiler");
+db.empleado.find({ Cargo: { $in: ["Gerente","Asistente"] } });
+
+
