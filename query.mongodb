@@ -120,6 +120,16 @@ db.automovil.insertMany([
     Capacidad: 5,
     Precio_Diario: 150000000,
   },
+  {
+    _id: 7,
+    ID_Automovil: 7,
+    Marca: "Cheverolet",
+    Modelo: 2023,
+    Anio: 2020,
+    Tipo: "redondo",
+    Capacidad: 7,
+    Precio_Diario: 150000000,
+  },
 ]);
 
 use("db_campus_alquiler");
@@ -190,7 +200,7 @@ db.reserva.insertMany([
     ID_Cliente_id: 2,
     ID_Automovil_id: 3,
     Fecha_Reserva: "2023-09-05",
-    Fecha_Inicio: "2024-03-03",
+    Fecha_Inicio: "2024-03-03", 
     Fecha_Fin: "2024-03-10",
     Estado: "Confirmado",
   },
@@ -218,7 +228,6 @@ db.reserva.insertMany([
   },
 ]);
 
-
 use("db_campus_alquiler");
 db.cliente.insertMany([
   {
@@ -230,9 +239,9 @@ db.cliente.insertMany([
     Direccion: "Calle 11",
     Telefono: "316915209",
     Email: "juandiegoquintero2505@gmail.com",
-    },
-    
-    {
+  },
+
+  {
     _id: 2,
     ID_Cliente: 2,
     Nombre: "Ana",
@@ -241,9 +250,9 @@ db.cliente.insertMany([
     Direccion: "Avenida 5",
     Telefono: "5647891234",
     Email: "anagonzalez@example.com",
-    },
-    
-    {
+  },
+
+  {
     _id: 3,
     ID_Cliente: 3,
     Nombre: "Juan",
@@ -252,9 +261,9 @@ db.cliente.insertMany([
     Direccion: "Plaza Principal",
     Telefono: "9876543210",
     Email: "juanperez@example.com",
-    },
-    
-    {
+  },
+
+  {
     _id: 4,
     ID_Cliente: 4,
     Nombre: "María",
@@ -263,9 +272,9 @@ db.cliente.insertMany([
     Direccion: "Calle 22",
     Telefono: "4567891230",
     Email: "marialopez@example.com",
-    },
-    
-    {
+  },
+
+  {
     _id: 5,
     ID_Cliente: 5,
     Nombre: "Pedro",
@@ -274,10 +283,28 @@ db.cliente.insertMany([
     Direccion: "Avenida 8",
     Telefono: "3698521470",
     Email: "pedroramirez@example.com",
-    }
-])
-
-
+  },
+  {
+    _id: 6,
+    ID_Cliente: 6,
+    Nombre: "David",
+    Apellido: "Avila",
+    DNI: "09867654",
+    Direccion: "Avenida 100",
+    Telefono: "3698521470",
+    Email: "juanavila@example.com",
+  },
+  {
+    _id: 7,
+    ID_Cliente: 7,
+    Nombre: "Ivan",
+    Apellido: "Sanchez",
+    DNI: "87669",
+    Direccion: "Avenida 120",
+    Telefono: "4573",
+    Email: "ivan@example.com",
+  },
+]);
 
 use("db_campus_alquiler");
 db.alquiler.insertMany([
@@ -288,22 +315,22 @@ db.alquiler.insertMany([
     ID_Automovil_id: 1,
     Fecha_Inicio: "2023-07-15",
     Fecha_Fin: "2023-07-20",
-    Costo_Total: 250.50,
+    Costo_Total: 250.5,
     Estado: "Confirmado",
-    },
-    
-    {
+  },
+
+  {
     _id: 2,
     ID_Alquiler: 2,
     ID_Cliente_id: 3,
     ID_Automovil_id: 4,
     Fecha_Inicio: "2023-08-21",
     Fecha_Fin: "2023-08-25",
-    Costo_Total: 180.00,
+    Costo_Total: 180.0,
     Estado: "Pendiente",
-    },
-    
-    {
+  },
+
+  {
     _id: 3,
     ID_Alquiler: 3,
     ID_Cliente_id: 2,
@@ -312,31 +339,41 @@ db.alquiler.insertMany([
     Fecha_Fin: "2023-09-10",
     Costo_Total: 300.75,
     Estado: "Confirmado",
-    },
-    
-    {
+  },
+
+  {
     _id: 4,
     ID_Alquiler: 4,
     ID_Cliente_id: 4,
     ID_Automovil_id: 2,
     Fecha_Inicio: "2023-09-20",
     Fecha_Fin: "2023-09-25",
-    Costo_Total: 190.20,
+    Costo_Total: 190.2,
     Estado: "Disponible",
-    },
-    
-    {
+  },
+
+  {
     _id: 5,
     ID_Alquiler: 5,
     ID_Cliente_id: 5,
     ID_Automovil_id: 6,
     Fecha_Inicio: "2023-10-10",
     Fecha_Fin: "2023-10-15",
-    Costo_Total: 350.00,
+    Costo_Total: 350.0,
     Estado: "Confirmado",
-    }
-])
-
+  },
+  {
+    _id: 6,
+    ID_Alquiler: 6,
+    ID_Cliente_id: 6,
+    ID_Automovil_id: 7,
+    Fecha_Inicio: "2023-07-05",
+    Fecha_Fin: "2023-10-15",
+    Costo_Total: 420.0,
+    Estado: "Confirmado",
+  }
+  
+]);
 
 use("db_campus_alquiler");
 db.registro_devolucion.insertMany([
@@ -349,9 +386,9 @@ db.registro_devolucion.insertMany([
     Combustible_Devuelto: 5.2,
     Kilometraje_Devuelto: 20000,
     Monto_Adicional: 20000,
-    },
-    
-    {
+  },
+
+  {
     _id: 2,
     ID_Registro: 2,
     ID_Alquiler_id: 3,
@@ -360,9 +397,9 @@ db.registro_devolucion.insertMany([
     Combustible_Devuelto: 7.8,
     Kilometraje_Devuelto: 15000,
     Monto_Adicional: 10000,
-    },
-    
-    {
+  },
+
+  {
     _id: 3,
     ID_Registro: 3,
     ID_Alquiler_id: 2,
@@ -371,9 +408,9 @@ db.registro_devolucion.insertMany([
     Combustible_Devuelto: 6.5,
     Kilometraje_Devuelto: 18000,
     Monto_Adicional: 15000,
-    },
-    
-    {
+  },
+
+  {
     _id: 4,
     ID_Registro: 4,
     ID_Alquiler_id: 4,
@@ -382,9 +419,9 @@ db.registro_devolucion.insertMany([
     Combustible_Devuelto: 4.2,
     Kilometraje_Devuelto: 25000,
     Monto_Adicional: 0,
-    },
-    
-    {
+  },
+
+  {
     _id: 5,
     ID_Registro: 5,
     ID_Alquiler_id: 5,
@@ -393,9 +430,8 @@ db.registro_devolucion.insertMany([
     Combustible_Devuelto: 8.0,
     Kilometraje_Devuelto: 22000,
     Monto_Adicional: 5000,
-    }   
-])
-
+  },
+]);
 
 use("db_campus_alquiler");
 db.registro_entrega.insertMany([
@@ -407,9 +443,9 @@ db.registro_entrega.insertMany([
     Fecha_Entrega: "2023-12-15",
     Combustible_Entregado: 5.2,
     Kilometraje_Entregado: 10000,
-    },
-    
-    {
+  },
+
+  {
     _id: 2,
     ID_Registro: 2,
     ID_Alquiler_id: 3,
@@ -417,9 +453,9 @@ db.registro_entrega.insertMany([
     Fecha_Entrega: "2024-01-10",
     Combustible_Entregado: 7.8,
     Kilometraje_Entregado: 8000,
-    },
-    
-    {
+  },
+
+  {
     _id: 3,
     ID_Registro: 3,
     ID_Alquiler_id: 2,
@@ -427,9 +463,9 @@ db.registro_entrega.insertMany([
     Fecha_Entrega: "2024-02-25",
     Combustible_Entregado: 6.5,
     Kilometraje_Entregado: 12000,
-    },
-    
-    {
+  },
+
+  {
     _id: 4,
     ID_Registro: 4,
     ID_Alquiler_id: 4,
@@ -437,9 +473,9 @@ db.registro_entrega.insertMany([
     Fecha_Entrega: "2024-03-20",
     Combustible_Entregado: 4.2,
     Kilometraje_Entregado: 15000,
-    },
-    
-    {
+  },
+
+  {
     _id: 5,
     ID_Registro: 5,
     ID_Alquiler_id: 5,
@@ -447,9 +483,8 @@ db.registro_entrega.insertMany([
     Fecha_Entrega: "2024-04-05",
     Combustible_Entregado: 8.0,
     Kilometraje_Entregado: 18000,
-    }
-])
-
+  },
+]);
 
 use("db_campus_alquiler");
 db.empleado.insertMany([
@@ -461,10 +496,10 @@ db.empleado.insertMany([
     DNI: "1234567890",
     Direccion: "Avenida 5",
     Telefono: "3216549870",
-    Cargo: "Recepcionista"
-    },
-    
-    {
+    Cargo: "Recepcionista",
+  },
+
+  {
     _id: 2,
     ID_Empleado: 2,
     Nombre: "Ana",
@@ -472,10 +507,9 @@ db.empleado.insertMany([
     DNI: "9876543210",
     Direccion: "Calle 10",
     Telefono: "7894561230",
-    Cargo: "Gerente de Ventas"
-    }
-    ,
-    {
+    Cargo: "Gerente de Ventas",
+  },
+  {
     _id: 3,
     ID_Empleado: 3,
     Nombre: "Pedro",
@@ -483,10 +517,10 @@ db.empleado.insertMany([
     DNI: "1099586475",
     Direccion: "Calle 12",
     Telefono: "3285268475",
-    Cargo: "Vendedor"
-    },
-    
-    {
+    Cargo: "Vendedor",
+  },
+
+  {
     _id: 4,
     ID_Empleado: 4,
     Nombre: "María",
@@ -494,10 +528,10 @@ db.empleado.insertMany([
     DNI: "2345678901",
     Direccion: "Avenida 8",
     Telefono: "4567891230",
-    Cargo: "Contadora"
-    },
-    
-    {
+    Cargo: "Contadora",
+  },
+
+  {
     _id: 5,
     ID_Empleado: 5,
     Nombre: "David",
@@ -505,10 +539,29 @@ db.empleado.insertMany([
     DNI: "54765",
     Direccion: "Calle 22",
     Telefono: "5678901230",
-    Cargo: "Técnico de Soporte"
-    }
-])
-
+    Cargo: "Técnico de Soporte",
+  },
+  {
+    _id: 6,
+    ID_Empleado: 6,
+    Nombre: "David",
+    Apellido: "camacho",
+    DNI: "546756765",
+    Direccion: "Calle 22",
+    Telefono: "45346",
+    Cargo: "Gerente",
+  },
+  {
+    _id: 7,
+    ID_Empleado: 7,
+    Nombre: "julie",
+    Apellido: "Lizarazo",
+    DNI: "34525",
+    Direccion: "Calle 22",
+    Telefono: "655",
+    Cargo: "Asitente",
+  },
+]);
 
 //Relation collection
 /* use("db_campus_alquiler");
@@ -524,39 +577,92 @@ db.getCollection("sucursal").aggregate({
 
 // Mostrar todos los clientes registrados en la base de datos
 use("db_campus_alquiler");
-db.cliente.find({},{Nombre:1, Apellido:1, _id:0})
+db.cliente.find({}, { Nombre: 1, Apellido: 1, _id: 0 });
 // Obtener todos los automóviles disponibles para alquiler.
 
 use("db_campus_alquiler");
-db.alquiler.find({"Estado":"Disponible"});
-db.alquiler.find({Estado:{$eq:"Disponible"}});
+db.alquiler.find({ Estado: "Disponible" });
+db.alquiler.find({ Estado: { $eq: "Disponible" } });
 
-// Listar todos los alquileres activos junto con los datos de los clientes relacionados. 
+// Listar todos los alquileres activos junto con los datos de los clientes relacionados.
 use("db_campus_alquiler");
-db.getCollection("cliente").aggregate([{
-  $lookup:{
-    from:"alquiler",
-    localField: "_id",
-    foreignField:"ID_Cliente_id",
-    as: "alquiler_FK",
-  }},
+db.getCollection("cliente").aggregate([
+  {
+    $lookup: {
+      from: "alquiler",
+      localField: "_id",
+      foreignField: "ID_Cliente_id",
+      as: "alquiler_FK",
+    },
+  },
   {
     $project: {
-      "alquiler_FK._id":0,
-      "alquiler_FK.ID_Cliente_id":0,
-      "alquiler_FK.ID_Automovil_id":0,
-      "alquiler_FK.Costo_Total":0,
-    }
+      "alquiler_FK._id": 0,
+      "alquiler_FK.ID_Cliente_id": 0,
+      "alquiler_FK.ID_Automovil_id": 0,
+      "alquiler_FK.Costo_Total": 0,
+    },
   },
   {
-    $unwind:"$alquiler_FK"
+    $unwind: "$alquiler_FK",
   },
- { $match:{
-  "alquiler_FK.Estado":{$eq:"Disponible"}
- }},
+  {
+    $match: {
+      "alquiler_FK.Estado": { $eq: "Disponible" },
+    },
+  },
+]);
 
-  ]
-)
-
-
+// Mostrar todas las reservas pendientes con los datos del cliente y el automóvil reservado.
+use("db_campus_alquiler");
+db.getCollection("reserva").aggregate([
+  {
+    $match: {
+      Estado: "Pendiente",
+    },
+  },
+  {
+    $lookup: {
+      from: "cliente", 
+      localField: "ID_Cliente_id", 
+      foreignField: "_id", 
+      as: "cliente",
+    },
+  },
+  {
+    $unwind: "$cliente",
+  },
+  {
+    $lookup: {
+      from: "automovil",
+      localField: "ID_Automovil_id", 
+      foreignField: "_id", 
+      as: "automovil",
+    },
+  },
+  {
+    $unwind: "$automovil",
+  },
+  {
+    $project: {
+      ID_Reserva: 1,
+      Fecha_Reserva: 1,
+      Fecha_Inicio: 1,
+      Fecha_Fin: 1,
+      Estado: 1,
+      "cliente.ID_Cliente": 1,
+      "cliente.Nombre": 1,
+      "cliente.Apellido": 1,
+      "cliente.DNI": 1,
+      "cliente.Direccion": 1,
+      "cliente.Telefono": 1,
+      "cliente.Email": 1,
+      "automovil.Marca": 1,
+      "automovil.Modelo": 1,
+      "automovil.Anio": 1,
+      "automovil.Tipo": 1,
+      "automovil._id": 1,
+    },
+  },
+]);
 
