@@ -666,3 +666,8 @@ db.getCollection("reserva").aggregate([
   },
 ]);
 
+//Obtener los detalles del alquiler con el ID_Alquilerespecífico
+use("db_campus_alquiler");
+db.alquiler.find({ ID_Alquiler: 2 }); //Ojo corregir despues en otro momentooooooooooooooooooooo
+
+
