@@ -678,3 +678,34 @@ db.empleado.find({Cargo: {$eq:"Vendedor"}});
 
 
 
+// Mostrar la cantidad total de automóviles disponibles en cada
+// sucursal. 
+use("db_campus_alquiler");
+db.getCollection("sucursal").aggregate([
+  {
+    $lookup: {
+      from: 'sucursal_automovil', 
+      localField: 'sucursal_id', 
+      foreignField: 'ID_Sucursal_id', 
+      as: 'automoviles' 
+    }
+  },
+  {
+    $addFields: {
+      cantidad_total_automoviles: { $sum: "$automoviles.Cantidad_Disponible" }
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      sucursal_id: 1,
+      Nombre: 1,
+      Direccion: 1,
+      Telefono: 1,
+      cantidad_total_automoviles: 1
+    }
+  }
+]);
+
+
+
