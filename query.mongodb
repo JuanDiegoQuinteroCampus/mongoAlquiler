@@ -731,3 +731,11 @@ db.automovil.find({Capacidad: {$gt:5}});
 use("db_campus_alquiler");
 db.alquiler.findOne({ Fecha_Inicio: {$eq:"2023-07-05"}}); 
 
+
+
+// Listar las reservas pendientes realizadas por un cliente
+// específico. 
+use("db_campus_alquiler");
+db.reserva.find({ ID_Cliente_id: 3, Estado: 'Pendiente' });
+
+
