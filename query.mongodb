@@ -52,11 +52,46 @@ db.createCollection("sucursal",{
     }
 });
 
+db.createCollection("sucursal_automovil",{
+  validator:{
+    $jsonSchema:{
+      bsonType:'object',
+      required:[
+        '_id',
+      'ID_Sucursal_id',
+      'ID_Automovil_id',
+      'Cantidad_Disponible'],
+      properties:{
+        _id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Sucursal_id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Automovil_id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        Cantidad_Disponible:{
+          bsonType: 'int',
+          description: 'Cantidad_Disponible should be int'
+        }
+      }
+    }
+  }
+});
 
 
 
 
-//Insert data in the collection
+
+
+
+
+
+//Insert data in the collection !!!!!!!!!!!!!!!!
 use("db_campus_alquiler");
 db.sucursal.insertMany([
   {
