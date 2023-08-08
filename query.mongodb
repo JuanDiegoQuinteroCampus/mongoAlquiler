@@ -1,6 +1,6 @@
 //Creo la base de datos, pero no aparece hasta que tambien cree una collection
 use("db_campus_alquiler");
-//creacion de collection
+//creacion de collection (¡¡¡¡¡Ojo este solo para saber como crear collections)
 db.createCollection("sucursal");
 db.createCollection("sucursal_automovil");
 db.createCollection("reserva");
@@ -11,6 +11,51 @@ db.createCollection("registro_devolucion");
 db.createCollection("registro_entrega");
 db.createCollection("empleado");
 
+
+
+
+// Creacion de collections con validaciones (!!!!Importante el anterior es sin validación por lo cual debe ejecutar este y no el anterior)
+db.createCollection("sucursal",{
+    validator:{
+      $jsonSchema:{
+        bsonType:'object',
+        required:[
+          '_id', 'sucursal_id', 'Nombre', 'Direccion', 'Telefono'
+        ],
+        properties:{
+          _id:{
+            bsonType:'int',
+            description: '_id should be int'
+          },
+          sucursal_id:{
+            bsonType: 'int',
+            description: 'sucursal_id should be int'
+          },
+          Nombre:{
+            bsonType: 'string',
+            description: 'Nombre should be string'
+          },
+          Direccion:{
+            bsonType: 'string',
+            description: 'Direccion should be string'
+          },
+          Telefono:{
+            bsonType: 'array',
+            items:{
+              bsonType:'int',
+              description: 'Telefono'
+            }
+          },
+
+        }
+      }
+    }
+});
+
+
+
+
+
 //Insert data in the collection
 use("db_campus_alquiler");
 db.sucursal.insertMany([
@@ -19,14 +64,14 @@ db.sucursal.insertMany([
     sucursal_id: 1,
     Nombre: "Zona Franca",
     Direccion: "Florida",
-    Telefono: 123456789,
+    Telefono: [123456789],
   },
   {
     _id: 2,
     sucursal_id: 2,
     Nombre: "Centro Comercial",
     Direccion: "Avenida Principal",
-    Telefono: 987654321,
+    Telefono: [987654321],
   },
 
   {
@@ -34,7 +79,7 @@ db.sucursal.insertMany([
     sucursal_id: 3,
     Nombre: "Tienda del Barrio",
     Direccion: "Calle 123",
-    Telefono: 456789123,
+    Telefono: [456789123],
   },
 
   {
@@ -42,7 +87,7 @@ db.sucursal.insertMany([
     sucursal_id: 4,
     Nombre: "Supermercado Express",
     Direccion: "Avenida Central",
-    Telefono: 369852147,
+    Telefono: [369852147],
   },
 
   {
@@ -50,7 +95,7 @@ db.sucursal.insertMany([
     sucursal_id: 5,
     Nombre: "Mega Mall",
     Direccion: "Calle Principal",
-    Telefono: 741258963,
+    Telefono: [741258963],
   },
 ]);
 
