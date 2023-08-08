@@ -56,11 +56,7 @@ db.createCollection("sucursal_automovil",{
   validator:{
     $jsonSchema:{
       bsonType:'object',
-      required:[
-        '_id',
-      'ID_Sucursal_id',
-      'ID_Automovil_id',
-      'Cantidad_Disponible'],
+      required:['_id','ID_Sucursal_id','ID_Automovil_id','Cantidad_Disponible'],
       properties:{
         _id:{
           bsonType:'int',
@@ -83,6 +79,33 @@ db.createCollection("sucursal_automovil",{
   }
 });
 
+db.createCollection("reserva",{
+  validator:{
+    $jsonSchema:{
+      bsonType:'object',
+      required:['_id','ID_Reserva','ID_Cliente_id','ID_Automovil_id','Fecha_Reserva','Fecha_Inicio','Fecha_Fin','Estado'],
+      properties:{
+        _id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Reserva:{
+          bsonType:'int',
+          description:'ID_Reserva should be int'
+        },
+        ID_Cliente_id:{
+          bsonType:'int',
+          description:'ID_Cliente_id should be int'
+        },
+        ID_Automovil_id:{
+          bsonType:'int',
+          description:'ID_Automovil_id should be int'
+        },
+
+      }
+    }
+  }
+});
 
 
 
