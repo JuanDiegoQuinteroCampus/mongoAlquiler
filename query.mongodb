@@ -800,3 +800,67 @@ db.getCollection("sucursal").aggregate([
 use("db_campus_alquiler");
 db.alquiler.countDocuments();
 
+
+// Mostrar los automóviles con capacidad igual a 5 personas y que estén disponibles. 
+use("db_campus_alquiler");
+db.getCollection("automovil").aggregate([
+  
+  {
+    $lookup: {
+      from: 'alquiler',
+      localField: 'ID_Automovil',
+      foreignField: 'ID_Automovil',
+      as: 'alquileres'
+    },
+  },
+  {
+    $match: {
+      Capacidad: {$eq:5},
+      'alquileres.Estado': {Estado:'Disponible'}
+    }
+  },
+  
+  {
+    $project: {
+      _id: 0, // Excluir el campo _id del resultado
+      ID_Automovil: 1,
+      
+      // Agrega otros campos que quieras mostrar en el resultado
+    }
+  }
+])
+
+
+/* use("db_campus_alquiler");
+db.getCollection("automovil").aggregate([
+  
+  {
+    $lookup: {
+      from: 'sucursal_automovil',
+      localField: 'ID_Automovil',
+      foreignField: 'ID_Automovil_id',
+      as: 'disponibilidad'
+    }
+  },
+  {
+    $unwind: '$disponibilidad' // Desenrollar el arreglo 'disponibilidad'
+  },
+  {
+    $match: {
+      Capacidad: 5,
+      'disponibilidad.Cantidad_Disponible': { $gt: 0 } // Cantidad_Disponible mayor a 0 indica que está disponible
+    }
+  },
+  {
+    $project: {
+      _id: 0,
+      ID_Automovil: 1,
+      Marca: 1,
+      Modelo: 1,
+      Capacidad: 1
+      // Agrega otros campos que quieras mostrar en el resultado
+    }
+  }
+]) */
+
+
