@@ -107,7 +107,48 @@ db.createCollection("reserva",{
   }
 });
 
-
+db.createCollection("automovil",{
+  validator:{
+    $jsonSchema:{
+      bsonType:'object',
+      required:['_id', 'ID_Automovil', 'Marca', 'Modelo', 'Anio', 'Tipo', 'Capacidad', 'Precio_Diario'],
+      properties:{
+        _id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Automovil:{
+          bsonType:'int',
+          description:'ID_Automovil should be int'
+        },
+        Marca:{
+          bsonType:'string',
+          description:'Marca should be a string'
+        },
+        Modelo:{
+          bsonType:'int',
+          description:'Modelo should be int'
+        },
+        Anio:{
+          bsonType:'int',
+          description:'Anio should be int (año)'
+        },
+        Tipo:{
+          bsonType:'string',
+          description:'Tipo should be a string'
+        },
+        Capacidad:{
+          bsonType:'int',
+          description:'Capacidad should be int'
+        },
+        Precio_Diario:{
+          bsonType:'int',
+          description:'Precio_Diario should be int'
+        }
+      }
+    }
+  }
+});
 
 
 
@@ -338,21 +379,21 @@ db.cliente.insertMany([
     ID_Cliente: 1,
     Nombre: "Juan",
     Apellido: "Quintero",
-    DNI: "346266",
+    DNI: 346266,
     Direccion: "Calle 11",
-    Telefono: "316915209",
-    Email: "juandiegoquintero2505@gmail.com",
+    Telefono: 316915209,
+    Email: "juandiegoquintero2505@gmail.com"
   },
 
   {
     _id: 2,
     ID_Cliente: 2,
     Nombre: "Ana",
-    Apellido: "González",
-    DNI: "285467912",
+    Apellido: "Gonzalez",
+    DNI: 285467912,
     Direccion: "Avenida 5",
-    Telefono: "5647891234",
-    Email: "anagonzalez@example.com",
+    Telefono: 5647891234,
+    Email: "anagonzalez@example.com"
   },
 
   {
@@ -360,10 +401,10 @@ db.cliente.insertMany([
     ID_Cliente: 3,
     Nombre: "Juan",
     Apellido: "Pérez",
-    DNI: "198765432",
+    DNI: 198765432,
     Direccion: "Plaza Principal",
-    Telefono: "9876543210",
-    Email: "juanperez@example.com",
+    Telefono: 9876543210,
+    Email: "juanperez@example.com"
   },
 
   {
@@ -371,10 +412,10 @@ db.cliente.insertMany([
     ID_Cliente: 4,
     Nombre: "María",
     Apellido: "López",
-    DNI: "378956421",
+    DNI: 378956421,
     Direccion: "Calle 22",
-    Telefono: "4567891230",
-    Email: "marialopez@example.com",
+    Telefono: 4567891230,
+    Email: "marialopez@example.com"
   },
 
   {
@@ -382,30 +423,30 @@ db.cliente.insertMany([
     ID_Cliente: 5,
     Nombre: "Pedro",
     Apellido: "Ramírez",
-    DNI: "561239847",
+    DNI: 561239847,
     Direccion: "Avenida 8",
-    Telefono: "3698521470",
-    Email: "pedroramirez@example.com",
+    Telefono: 3698521470,
+    Email: "pedroramirez@example.com"
   },
   {
     _id: 6,
     ID_Cliente: 6,
     Nombre: "David",
     Apellido: "Avila",
-    DNI: "09867654",
+    DNI: 9867654,
     Direccion: "Avenida 100",
-    Telefono: "3698521470",
-    Email: "juanavila@example.com",
+    Telefono: 3698521470,
+    Email: "juanavila@example.com"
   },
   {
     _id: 7,
     ID_Cliente: 7,
     Nombre: "Ivan",
     Apellido: "Sanchez",
-    DNI: "87669",
+    DNI: 87669,
     Direccion: "Avenida 120",
-    Telefono: "4573",
-    Email: "ivan@example.com",
+    Telefono: 4573,
+    Email: "ivan@example.com"
   },
 ]);
 
