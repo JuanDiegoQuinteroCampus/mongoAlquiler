@@ -236,6 +236,52 @@ db.createCollection("alquiler", {
   }
 });
 
+db.createCollection("registro_devolucion", {
+  validator:{
+    $jsonSchema:{
+      bsonType:'object',
+      required:['_id', 'ID_Registro', 'ID_Alquiler_id', 'ID_Empleado_id', 'Fecha_Devolucion', 'Combustible_Devuelto', 'Kilometraje_Devuelto', 'Monto_Adicional'],
+      properties:{
+        _id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Registro:{
+          bsonType:'int',
+          description:'ID_Registro should be int'
+        },
+        ID_Alquiler_id:{
+          bsonType:'int',
+          description:'ID_Alquiler_id should be int'
+        },
+        ID_Empleado_id:{
+          bsonType:'int',
+          description:'ID_Empleado_id should be int'
+        },
+        Fecha_Devolucion: {
+          bsonType: 'date',
+          description: 'Fecha_Devolucion should be date'
+        },
+        Combustible_Devuelto: {
+          bsonType: 'double',
+          description: 'Combustible_Devuelto should be double'
+        },
+        Kilometraje_Devuelto: {
+          bsonType: 'number',
+          description: 'Kilometraje_Devuelto should be number'
+        },
+        Monto_Adicional: {
+          bsonType: 'number',
+          description: 'Monto_Adicional should be number'
+        },
+
+      }
+    }
+  }
+});
+
+
+
 
 //Insert data in the collection !!!!!!!!!!!!!!!!
 use("db_campus_alquiler");
