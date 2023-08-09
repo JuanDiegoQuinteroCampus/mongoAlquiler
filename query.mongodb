@@ -320,6 +320,48 @@ db.createCollection("registro_entrega",{
   }
 });
 
+db.createCollection("empleado",{
+  validator:{
+    $jsonSchema:{
+      bsonType:'object',
+      required:['_id', 'ID_Empleado', 'Nombre', 'Apellido', 'DNI', 'Direccion', 'Telefono', 'Cargo'],
+      properties:{
+        _id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Empleado:{
+          bsonType:'int',
+          description:'ID_Empleado should be int'
+        },
+        Nombre:{
+          bsonType:'string',
+          description:'Nombre should be string'
+        },
+        Apellido:{
+          bsonType:'string',
+          description:'Apellido should be string'
+        },
+        DNI:{
+          bsonType:'number',
+          description:'DNI should be number'
+        },
+        Direccion:{
+          bsonType:'string',
+          description:'Direccion should be string'
+        },
+        Telefono:{
+          bsonType:'number',
+          description:'Telefono should be number'
+        },
+        Cargo:{
+          bsonType:'string',
+          description:'Cargo should be string'
+        },
+      }
+    }
+  }
+});
 
 
 
