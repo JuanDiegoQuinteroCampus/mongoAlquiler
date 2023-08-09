@@ -193,8 +193,48 @@ db.createCollection("cliente",{
   }
 });
 
-
-
+db.createCollection("alquiler", {
+  validator: {
+    $jsonSchema: {
+      bsonType: 'object',
+      required: ['_id', 'ID_Alquiler', 'ID_Cliente_id', 'ID_Automovil_id', 'Fecha_Inicio', 'Fecha_Fin', 'Costo_Total', 'Estado'],
+      properties: {
+        _id: {
+          bsonType: 'int',
+          description: '_id should be int'
+        },
+        ID_Alquiler: {
+          bsonType: 'int',
+          description: 'ID_Alquiler should be int'
+        },
+        ID_Cliente_id: {
+          bsonType: 'int',
+          description: 'ID_Cliente_id should be int'
+        },
+        ID_Automovil_id: {
+          bsonType: 'int',
+          description: 'ID_Automovil_id should be int'
+        },
+        Fecha_Inicio: {
+          bsonType: 'date',
+          description: 'Fecha_Inicio should be date'
+        },
+        Fecha_Fin: {
+          bsonType: 'date',
+          description: 'Fecha_Fin should be date'
+        },
+        Costo_Total: {
+          bsonType: 'double',
+          description: 'Costo_Total should be double'
+        },
+        Estado: {
+          bsonType: 'string',
+          description: 'Estado should be string'
+        }
+      }
+    }
+  }
+});
 
 
 //Insert data in the collection !!!!!!!!!!!!!!!!
@@ -499,9 +539,9 @@ db.alquiler.insertMany([
     ID_Alquiler: 1,
     ID_Cliente_id: 1,
     ID_Automovil_id: 1,
-    Fecha_Inicio: "2023-07-15",
-    Fecha_Fin: "2023-07-20",
-    Costo_Total: 250.5,
+    Fecha_Inicio: ISODate("2023-07-15"),
+    Fecha_Fin: ISODate("2023-07-20"),
+    Costo_Total: Double(250.5),
     Estado: "Confirmado",
   },
 
@@ -510,9 +550,9 @@ db.alquiler.insertMany([
     ID_Alquiler: 2,
     ID_Cliente_id: 3,
     ID_Automovil_id: 4,
-    Fecha_Inicio: "2023-08-21",
-    Fecha_Fin: "2023-08-25",
-    Costo_Total: 180.0,
+    Fecha_Inicio: ISODate("2023-08-21"),
+    Fecha_Fin: ISODate("2023-08-25"),
+    Costo_Total: Double(1050.5),
     Estado: "Pendiente",
   },
 
@@ -521,9 +561,9 @@ db.alquiler.insertMany([
     ID_Alquiler: 3,
     ID_Cliente_id: 2,
     ID_Automovil_id: 3,
-    Fecha_Inicio: "2023-09-05",
-    Fecha_Fin: "2023-09-10",
-    Costo_Total: 300.75,
+    Fecha_Inicio: ISODate("2023-09-05"),
+    Fecha_Fin: ISODate("2023-09-10"),
+    Costo_Total: Double(890.5),
     Estado: "Confirmado",
   },
 
@@ -532,9 +572,9 @@ db.alquiler.insertMany([
     ID_Alquiler: 4,
     ID_Cliente_id: 4,
     ID_Automovil_id: 2,
-    Fecha_Inicio: "2023-09-20",
-    Fecha_Fin: "2023-09-25",
-    Costo_Total: 190.2,
+    Fecha_Inicio: ISODate("2023-09-20"),
+    Fecha_Fin: ISODate("2023-09-25"),
+    Costo_Total: Double(567.5),
     Estado: "Disponible",
   },
 
@@ -543,9 +583,9 @@ db.alquiler.insertMany([
     ID_Alquiler: 5,
     ID_Cliente_id: 5,
     ID_Automovil_id: 6,
-    Fecha_Inicio: "2023-10-10",
-    Fecha_Fin: "2023-10-15",
-    Costo_Total: 350.0,
+    Fecha_Inicio: ISODate("2023-10-10"),
+    Fecha_Fin: ISODate("2023-10-15"),
+    Costo_Total: Double(10.5),
     Estado: "Confirmado",
   },
   {
@@ -553,9 +593,9 @@ db.alquiler.insertMany([
     ID_Alquiler: 6,
     ID_Cliente_id: 6,
     ID_Automovil_id: 7,
-    Fecha_Inicio: "2023-07-05",
-    Fecha_Fin: "2023-10-15",
-    Costo_Total: 420.0,
+    Fecha_Inicio: ISODate("2023-07-05"),
+    Fecha_Fin: ISODate("2023-10-15"),
+    Costo_Total: Double(340.5),
     Estado: "Confirmado",
   }
   
@@ -568,8 +608,8 @@ db.registro_devolucion.insertMany([
     ID_Registro: 1,
     ID_Alquiler_id: 1,
     ID_Empleado_id: 1,
-    Fecha_Devolucion: "2024-01-15",
-    Combustible_Devuelto: 5.2,
+    Fecha_Devolucion: ISODate("2024-01-15"),
+    Combustible_Devuelto: Double(5.2),
     Kilometraje_Devuelto: 20000,
     Monto_Adicional: 20000,
   },
@@ -579,8 +619,8 @@ db.registro_devolucion.insertMany([
     ID_Registro: 2,
     ID_Alquiler_id: 3,
     ID_Empleado_id: 2,
-    Fecha_Devolucion: "2024-02-10",
-    Combustible_Devuelto: 7.8,
+    Fecha_Devolucion: ISODate("2024-05-05"),
+    Combustible_Devuelto: Double(7.8),
     Kilometraje_Devuelto: 15000,
     Monto_Adicional: 10000,
   },
@@ -590,8 +630,8 @@ db.registro_devolucion.insertMany([
     ID_Registro: 3,
     ID_Alquiler_id: 2,
     ID_Empleado_id: 1,
-    Fecha_Devolucion: "2024-03-03",
-    Combustible_Devuelto: 6.5,
+    Fecha_Devolucion: ISODate("2024-01-16"),
+    Combustible_Devuelto: Double(6.5),
     Kilometraje_Devuelto: 18000,
     Monto_Adicional: 15000,
   },
@@ -601,8 +641,8 @@ db.registro_devolucion.insertMany([
     ID_Registro: 4,
     ID_Alquiler_id: 4,
     ID_Empleado_id: 3,
-    Fecha_Devolucion: "2024-04-18",
-    Combustible_Devuelto: 4.2,
+    Fecha_Devolucion: ISODate("2024-12-23"),
+    Combustible_Devuelto: Double(4.2),
     Kilometraje_Devuelto: 25000,
     Monto_Adicional: 0,
   },
@@ -612,8 +652,8 @@ db.registro_devolucion.insertMany([
     ID_Registro: 5,
     ID_Alquiler_id: 5,
     ID_Empleado_id: 2,
-    Fecha_Devolucion: "2024-05-05",
-    Combustible_Devuelto: 8.0,
+    Fecha_Devolucion: ISODate("2024-08-03"),
+    Combustible_Devuelto: Double(8.0),
     Kilometraje_Devuelto: 22000,
     Monto_Adicional: 5000,
   },
@@ -626,8 +666,8 @@ db.registro_entrega.insertMany([
     ID_Registro: 1,
     ID_Alquiler_id: 1,
     ID_Empleado_id: 1,
-    Fecha_Entrega: "2023-12-15",
-    Combustible_Entregado: 5.2,
+    Fecha_Entrega: ISODate("2023-12-15"),
+    Combustible_Entregado: Double(5.2),
     Kilometraje_Entregado: 10000,
   },
 
@@ -636,8 +676,8 @@ db.registro_entrega.insertMany([
     ID_Registro: 2,
     ID_Alquiler_id: 3,
     ID_Empleado_id: 2,
-    Fecha_Entrega: "2024-01-10",
-    Combustible_Entregado: 7.8,
+    Fecha_Entrega: ISODate("2024-01-10"),
+    Combustible_Entregado: Double(7.8),
     Kilometraje_Entregado: 8000,
   },
 
@@ -646,8 +686,8 @@ db.registro_entrega.insertMany([
     ID_Registro: 3,
     ID_Alquiler_id: 2,
     ID_Empleado_id: 1,
-    Fecha_Entrega: "2024-02-25",
-    Combustible_Entregado: 6.5,
+    Fecha_Entrega: ISODate("2024-02-25"),
+    Combustible_Entregado: Double(6.5),
     Kilometraje_Entregado: 12000,
   },
 
@@ -656,8 +696,8 @@ db.registro_entrega.insertMany([
     ID_Registro: 4,
     ID_Alquiler_id: 4,
     ID_Empleado_id: 3,
-    Fecha_Entrega: "2024-03-20",
-    Combustible_Entregado: 4.2,
+    Fecha_Entrega: ISODate("2024-03-20"),
+    Combustible_Entregado: Double(4.2),
     Kilometraje_Entregado: 15000,
   },
 
@@ -666,8 +706,8 @@ db.registro_entrega.insertMany([
     ID_Registro: 5,
     ID_Alquiler_id: 5,
     ID_Empleado_id: 2,
-    Fecha_Entrega: "2024-04-05",
-    Combustible_Entregado: 8.0,
+    Fecha_Entrega: ISODate("2024-04-05"),
+    Combustible_Entregado: Double(8.0),
     Kilometraje_Entregado: 18000,
   },
 ]);
@@ -679,9 +719,9 @@ db.empleado.insertMany([
     ID_Empleado: 1,
     Nombre: "Juan",
     Apellido: "Pérez",
-    DNI: "1234567890",
+    DNI: 1234567890,
     Direccion: "Avenida 5",
-    Telefono: "3216549870",
+    Telefono: 3216549870,
     Cargo: "Recepcionista",
   },
 
@@ -690,9 +730,9 @@ db.empleado.insertMany([
     ID_Empleado: 2,
     Nombre: "Ana",
     Apellido: "González",
-    DNI: "9876543210",
+    DNI: 9876543210,
     Direccion: "Calle 10",
-    Telefono: "7894561230",
+    Telefono: 7894561230,
     Cargo: "Gerente de Ventas",
   },
   {
@@ -700,9 +740,9 @@ db.empleado.insertMany([
     ID_Empleado: 3,
     Nombre: "Pedro",
     Apellido: "Gonzalez",
-    DNI: "1099586475",
+    DNI: 1099586475,
     Direccion: "Calle 12",
-    Telefono: "3285268475",
+    Telefono: 3285268475,
     Cargo: "Vendedor",
   },
 
@@ -711,9 +751,9 @@ db.empleado.insertMany([
     ID_Empleado: 4,
     Nombre: "María",
     Apellido: "López",
-    DNI: "2345678901",
+    DNI: 2345678901,
     Direccion: "Avenida 8",
-    Telefono: "4567891230",
+    Telefono: 4567891230,
     Cargo: "Contadora",
   },
 
@@ -722,9 +762,9 @@ db.empleado.insertMany([
     ID_Empleado: 5,
     Nombre: "David",
     Apellido: "Castaneda",
-    DNI: "54765",
+    DNI: 54765,
     Direccion: "Calle 22",
-    Telefono: "5678901230",
+    Telefono: 5678901230,
     Cargo: "Técnico de Soporte",
   },
   {
@@ -732,9 +772,9 @@ db.empleado.insertMany([
     ID_Empleado: 6,
     Nombre: "David",
     Apellido: "camacho",
-    DNI: "546756765",
+    DNI: 546756765,
     Direccion: "Calle 22",
-    Telefono: "45346",
+    Telefono: 45346,
     Cargo: "Gerente",
   },
   {
@@ -742,9 +782,9 @@ db.empleado.insertMany([
     ID_Empleado: 7,
     Nombre: "julie",
     Apellido: "Lizarazo",
-    DNI: "34525",
+    DNI: 34525,
     Direccion: "Calle 22",
-    Telefono: "655",
+    Telefono: 655,
     Cargo: "Asitente",
   },
 ]);
