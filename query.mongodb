@@ -150,6 +150,48 @@ db.createCollection("automovil",{
   }
 });
 
+db.createCollection("cliente",{
+  validator:{
+    $jsonSchema:{
+      bsonType:'object',
+      required:['_id', 'ID_Cliente', 'Nombre', 'Apellido', 'DNI', 'Direccion', 'Telefono', 'Email'],
+      properties:{
+        _id:{
+          bsonType:'int',
+          description:'_id should be int'
+        },
+        ID_Cliente:{
+          bsonType:'int',
+          description:'ID_Cliente should be int'
+        },
+        Nombre:{
+          bsonType:'string',
+          description:'Nombre should be a string'
+        },
+        Apellido:{
+          bsonType:'string',
+          description:'Apellido should be a string'
+        },
+        DNI:{
+          bsonType:'number',
+          description:'DNI should be number'
+        },
+        Direccion:{
+          bsonType:'string',
+          description:'Direccion should be a string'
+        },
+        Telefono:{
+          bsonType:'number',
+          description:'Telefono should be number'
+        },
+        Email:{
+          bsonType:'string',
+          description:'Email should be a string'
+        },
+      }
+    }
+  }
+});
 
 
 
