@@ -1283,3 +1283,13 @@ db.getCollection("automovil").aggregate([
 ]) */
 
 
+// .Listar los alquileres con fecha de inicio entre '2023-07-05' y '2023-07-10'.
+
+use("db_campus_alquiler");
+db.alquiler.find({
+  Fecha_Inicio: {
+    $gte: new Date("2023-07-13"),
+    $lte: new Date("2023-07-20")
+  }
+});
+
