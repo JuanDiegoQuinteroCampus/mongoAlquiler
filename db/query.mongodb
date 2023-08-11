@@ -101,6 +101,22 @@ db.createCollection("reserva",{
           bsonType:'int',
           description:'ID_Automovil_id should be int'
         },
+        Fecha_Reserva:{
+          bsonType:'date',
+          description:'Fecha_Reserva should be date'
+        },
+        Fecha_Inicio:{
+          bsonType:'date',
+          description:'Fecha_Inicio should be date'
+        },
+        Fecha_Fin:{
+          bsonType:'date',
+          description:'Fecha_Fin should be date'
+        },
+        Estado:{
+          bsonType:'string',
+          description:'Estado should be a string'
+        }
 
       }
     }
@@ -531,9 +547,9 @@ db.reserva.insertMany([
     ID_Reserva: 1,
     ID_Cliente_id: 1,
     ID_Automovil_id: 1,
-    Fecha_Reserva: "2023-07-15",
-    Fecha_Inicio: "2024-01-15",
-    Fecha_Fin: "2024-01-20",
+    Fecha_Reserva: ISODate("2023-07-15"),
+    Fecha_Inicio: ISODate("2024-01-15"),
+    Fecha_Fin: ISODate("2024-01-20"),
     Estado: "Confirmado",
   },
 
@@ -542,9 +558,9 @@ db.reserva.insertMany([
     ID_Reserva: 2,
     ID_Cliente_id: 3,
     ID_Automovil_id: 4,
-    Fecha_Reserva: "2023-08-21",
-    Fecha_Inicio: "2024-02-10",
-    Fecha_Fin: "2024-02-15",
+    Fecha_Reserva: ISODate("2023-08-21"),
+    Fecha_Inicio: ISODate("2024-02-10"),
+    Fecha_Fin: ISODate("2024-02-15"),
     Estado: "Pendiente",
   },
 
@@ -553,9 +569,9 @@ db.reserva.insertMany([
     ID_Reserva: 3,
     ID_Cliente_id: 2,
     ID_Automovil_id: 3,
-    Fecha_Reserva: "2023-09-05",
-    Fecha_Inicio: "2024-03-03", 
-    Fecha_Fin: "2024-03-10",
+    Fecha_Reserva: ISODate("2023-09-05"),
+    Fecha_Inicio: ISODate("2024-03-03"), 
+    Fecha_Fin: ISODate("2024-03-10"),
     Estado: "Confirmado",
   },
 
@@ -564,9 +580,9 @@ db.reserva.insertMany([
     ID_Reserva: 4,
     ID_Cliente_id: 4,
     ID_Automovil_id: 2,
-    Fecha_Reserva: "2023-09-20",
-    Fecha_Inicio: "2024-04-18",
-    Fecha_Fin: "2024-04-23",
+    Fecha_Reserva: ISODate("2023-09-20"),
+    Fecha_Inicio: ISODate("2024-04-18"),
+    Fecha_Fin: ISODate("2024-04-23"),
     Estado: "Cancelado",
   },
 
@@ -575,9 +591,9 @@ db.reserva.insertMany([
     ID_Reserva: 5,
     ID_Cliente_id: 5,
     ID_Automovil_id: 6,
-    Fecha_Reserva: "2023-10-10",
-    Fecha_Inicio: "2024-05-05",
-    Fecha_Fin: "2024-05-12",
+    Fecha_Reserva: ISODate("2023-10-10"),
+    Fecha_Inicio: ISODate("2024-05-05"),
+    Fecha_Fin: ISODate("2024-05-12"),
     Estado: "Confirmado",
   },
 ]);
