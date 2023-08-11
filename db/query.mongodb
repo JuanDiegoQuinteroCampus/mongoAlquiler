@@ -158,7 +158,7 @@ db.createCollection("automovil",{
           description:'Capacidad should be int'
         },
         Precio_Diario:{
-          bsonType:'int',
+          bsonType:'number',
           description:'Precio_Diario should be int'
         }
       }
