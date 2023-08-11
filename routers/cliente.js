@@ -124,4 +124,51 @@ appCliente.get("/get/:DNI", configGET(),async(req, res) => {
     
 });
 
+
+
+// Listar todos los alquileres activos junto con los datos de los clientes relacionados.
+appCliente.get("/get/alquileres/activos", configGET(), async (req, res) => {
+    try {
+        if (!req.rateLimit) {
+            return;
+        }
+
+        console.log(req.rateLimit);
+
+        let db = await con();
+        let collection = db.collection("cliente");
+        let result = await collection.aggregate([
+            {
+                $lookup: {
+                  from: "alquiler",
+                  localField: "_id",
+                  foreignField: "ID_Cliente_id",
+                  as: "alquiler_FK",
+                },
+              },
+              {
+                $project: {
+                  "alquiler_FK._id": 0,
+                  "alquiler_FK.ID_Cliente_id": 0,
+                  "alquiler_FK.ID_Automovil_id": 0,
+                  "alquiler_FK.Costo_Total": 0,
+                },
+              },
+              {
+                $unwind: "$alquiler_FK",
+              },
+              {
+                $match: {
+                  "alquiler_FK.Estado": { $eq: "Disponible" },
+                },
+              }
+        ]).toArray();
+
+        res.send(result);
+    } catch (error) {
+        console.error("Error en la consulta:", error);
+        res.status(500).send("Error en el servidor");
+    }
+});
+
 export default appCliente;
