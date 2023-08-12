@@ -128,7 +128,6 @@ appAutomovil.get("/get/orden/marca/modelo", configGET(),async(req, res) => {
 
 
 // Mostrar los automóviles con capacidad igual a 5 personas y que estén disponibles.
-//!  Ojo debo terminar la consulta bien hecha de los automoviles 
 appAutomovil.get("/get/igual/cantidadPerson", configGET(),async(req, res) => {
     try {
         if (!req.rateLimit) {
@@ -142,25 +141,28 @@ appAutomovil.get("/get/igual/cantidadPerson", configGET(),async(req, res) => {
         let result = await collection.aggregate([
             {
                 $lookup: {
-                  from: 'alquiler',
+                  from: 'sucursal_automovil',
                   localField: 'ID_Automovil',
-                  foreignField: 'ID_Automovil',
-                  as: 'alquileres'
-                },
+                  foreignField: 'ID_Automovil_id',
+                  as: 'disponibilidad'
+                }
+              },
+              {
+                $unwind: '$disponibilidad'
               },
               {
                 $match: {
-                  Capacidad: {$eq:5},
-                  'alquileres.Estado': {Estado:'Disponible'}
+                  Capacidad: 5,
+                  'disponibilidad.Cantidad_Disponible': { $gt: 0 } 
                 }
               },
-              
               {
                 $project: {
-                  _id: 0, 
+                  _id: 0,
                   ID_Automovil: 1,
-                  
-                  
+                  Marca: 1,
+                  Modelo: 1,
+                  Capacidad: 1
                 }
               }
         ]).toArray();
