@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "target": "es6",
+      "module": "ES6",
+      "moduleResolution": "node",
+      "outDir": "./routers/storage/",
+      "esModuleInterop": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
+    },
+    "include": [
+      "./routers/storage/*.ts" 
+    ],
+    "exclude": [
+      "./routers/storage/*.js" 
+    ]
+  }
