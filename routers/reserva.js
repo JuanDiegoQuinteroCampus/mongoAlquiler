@@ -1,7 +1,7 @@
 import { Router } from "express";
 import con from '../db/atlas.js'
 import { ObjectId } from "bson";
-import { configGET } from "../middleware/limit.js";
+import { configGET } from "../limit/limit.js";
 
 
 const appReserva = Router();
