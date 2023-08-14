@@ -10,8 +10,8 @@ appResgistroDevol.get("/get", configGET(),async(req, res) => {
     
     let {id} = req.query ;
     let db =await con();
-    let alquiler = db.collection("registro_devolucion");
-    let result = await alquiler.find().toArray();
+    let registro_devolucion = db.collection("registro_devolucion");
+    let result = await registro_devolucion.find().toArray();
     res.send(result);
     
 });
@@ -22,14 +22,14 @@ appResgistroDevol.post("/post", configGET(),async(req, res) => {
     
     let {id} = req.query ;
     let db =await con();
-    let alquiler = db.collection("registro_devolucion");
+    let registro_devolucion = db.collection("registro_devolucion");
     try {
         const transformedData = {
             ...req.body,
             Fecha_Devolucion: new Date(req.body.Fecha_Devolucion),
             
         };
-        let result = await alquiler.insertOne(transformedData);
+        let result = await registro_devolucion.insertOne(transformedData);
         res.send({message: "El dato fue insertado correctamente",result});
     
     } catch (error) {
@@ -57,18 +57,18 @@ appResgistroDevol.post("/post", configGET(),async(req, res) => {
     const id = Math.floor(req.params.id); 
 
     let db =await con();
-    let alquiler = db.collection("registro_devolucion");
+    let registro_devolucion = db.collection("registro_devolucion");
     try {
         const updateData = {
             ...req.body,
             Fecha_Devolucion: new Date(req.body.Fecha_Devolucion),
             
         };
-        let result = await alquiler.updateOne({_id: id},{ $set: updateData});
+        let result = await registro_devolucion.updateOne({_id: id},{ $set: updateData});
         if (result.matchedCount === 1) {
             res.send({message: "El dato fue insertado correctamente"});
         } else {
-            res.send({ message: "No se encontró el alquiler para actualizar" });
+            res.send({ message: "No se encontró el registro_devolucion para actualizar" });
            
         }
         
@@ -100,9 +100,9 @@ appResgistroDevol.delete("/delete/:id", configGET(),async(req, res) => {
     
 
     let db =await con();
-    let alquiler = db.collection("registro_devolucion");     
+    let registro_devolucion = db.collection("registro_devolucion");     
     try {
-        let result = await alquiler.deleteOne({ _id: id }); 
+        let result = await registro_devolucion.deleteOne({ _id: id }); 
         
         if (result.matchedCount === 1) {
             res.send({ message: "Los datos  fueron eliminados correctamente correctamente", result});
