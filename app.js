@@ -12,6 +12,7 @@ import appReserva from './routers/reserva.js';
 import appAutomovil from './routers/automovil.js';
 import appResgistroDevol from './routers/registro_devolucion.js';
 import appResgistroEntre from './routers/registro_entrega.js';
+import appEmpleado from './routers/empleado.js';
 
 dotenv.config();
 const app = express();
@@ -25,6 +26,7 @@ app.use("/reserva", appReserva)
 app.use("/automovil", appAutomovil)
 app.use("/registrodev", appResgistroDevol)
 app.use("/registroentrega", appResgistroEntre)
+app.use("/empleado", appEmpleado)
 
 const config = JSON.parse(process.env.MY_SERVER);
 app.listen(config,()=>{
