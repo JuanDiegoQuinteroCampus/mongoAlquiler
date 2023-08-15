@@ -15,14 +15,14 @@ const appVerify = Router();
 const DTO = (p1) => {
     const match = {
       'alquiler': AlquilerDto,
-      'automovil': AutomovilDto,
+      /* 'automovil': AutomovilDto,
       'cliente': ClienteDto,
       'empleado': EmpleadoDto,
       'registro_devolucion': RegDevolucionDto,
       'registro_entrega': RegEntregaDto,
       'reserva': ReservaDto,
       'sucursal_automovil': SucursalAutoDto,
-      'sucursal': SucursalDto,
+      'sucursal': SucursalDto, */
       'mongo': Error
     };
     const inst = match[p1];
