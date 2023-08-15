@@ -13,20 +13,23 @@ import appAutomovil from './routers/automovil.js';
 import appResgistroDevol from './routers/registro_devolucion.js';
 import appResgistroEntre from './routers/registro_entrega.js';
 import appEmpleado from './routers/empleado.js';
+import { appToken, appVerify } from './limit/token.js';
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 
-app.use("/cliente", appCliente);
-app.use("/alquiler", appAlquiler);
-app.use("/sucursal", appSucursal);
-app.use("/sucursal/automovil", appSucursalAutomovil)
-app.use("/reserva", appReserva)
-app.use("/automovil", appAutomovil)
-app.use("/registrodev", appResgistroDevol)
-app.use("/registroentrega", appResgistroEntre)
-app.use("/empleado", appEmpleado)
+app.use("/token", appToken);
+
+app.use("/cliente", appCliente, appVerify);
+app.use("/alquiler", appVerify, appAlquiler );
+app.use("/sucursal", appSucursal, appVerify);
+app.use("/sucursal/automovil", appSucursalAutomovil, appVerify)
+app.use("/reserva", appReserva, appVerify)
+app.use("/automovil", appAutomovil, appVerify)
+app.use("/registrodev", appResgistroDevol, appVerify)
+app.use("/registroentrega", appResgistroEntre, appVerify)
+app.use("/empleado", appEmpleado, appVerify)
 
 const config = JSON.parse(process.env.MY_SERVER);
 app.listen(config,()=>{
