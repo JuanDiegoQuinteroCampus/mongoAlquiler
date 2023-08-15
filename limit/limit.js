@@ -15,7 +15,7 @@ export let configGET = ()=>{
             return true;
         }
     },
-    message: (reeq, res)=>{
+    message: (req, res)=>{
         res.status(429).send({
             status:429,
             message: "Ya se acabo su tiempo"
