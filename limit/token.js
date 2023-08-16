@@ -9,6 +9,8 @@ import { Error } from "../routers/storage/mongo.js";
 import ClienteDTO from '../routers/storage/cliente.js';
 import EmpleadoDTO from '../routers/storage/empleado.js';
 import RegistroDevolucionDTO from '../routers/storage/registro_devolucion.js';
+import RegistroEntregaDTO from '../routers/storage/registro_entrega.js';
+
 
 
 dotenv.config("../");
@@ -23,8 +25,9 @@ const DTO = (p1) => {
       'cliente': ClienteDTO,
       'empleado': EmpleadoDTO,
       'registrodevolucion': RegistroDevolucionDTO,
+      'registroentrega': RegistroEntregaDTO,
       /*
-      'registro_entrega': RegEntregaDto,
+      
       'reserva': ReservaDto,
       'sucursal_automovil': SucursalAutoDto,
       'sucursal': SucursalDto, */
