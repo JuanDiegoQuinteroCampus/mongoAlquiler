@@ -1,10 +1,11 @@
 import { Router } from "express";
 import con from '../db/atlas.js'
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxyRegistroDev } from "../middleware/proxyRegistroDev.js";
 
 const appResgistroDevol = Router();
 
-appResgistroDevol.get("/get", configGET(),async(req, res) => {
+appResgistroDevol.get("/get", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -15,8 +16,8 @@ appResgistroDevol.get("/get", configGET(),async(req, res) => {
     res.send(result);
     
 });
-//! Ojo el dato a insertar Combustible_Devuelto debe ser decimal
-appResgistroDevol.post("/post", configGET(),async(req, res) => {
+
+appResgistroDevol.post("/post", configGET(),proxyRegistroDev,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -50,7 +51,7 @@ appResgistroDevol.post("/post", configGET(),async(req, res) => {
   } */
 
 
-  appResgistroDevol.put("/put/:id", configGET(),async(req, res) => {
+  appResgistroDevol.put("/put/:id", configGET(),proxyRegistroDev,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -91,7 +92,7 @@ appResgistroDevol.post("/post", configGET(),async(req, res) => {
     
 });
 
-appResgistroDevol.delete("/delete/:id", configGET(),async(req, res) => {
+appResgistroDevol.delete("/delete/:id", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
