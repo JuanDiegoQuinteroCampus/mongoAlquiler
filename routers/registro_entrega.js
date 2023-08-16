@@ -1,10 +1,11 @@
 import { Router } from "express";
 import con from '../db/atlas.js'
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxyRegistroEntrega } from "../middleware/proxyregistroEntrega.js";
 
 const appResgistroEntre = Router();
 
-appResgistroEntre.get("/get", configGET(),async(req, res) => {
+appResgistroEntre.get("/get", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -15,8 +16,8 @@ appResgistroEntre.get("/get", configGET(),async(req, res) => {
     res.send(result);
     
 });
-//! Ojo el dato a insertar Combustible_Entregado debe ser decimal
-appResgistroEntre.post("/post", configGET(),async(req, res) => {
+
+appResgistroEntre.post("/post", configGET(),proxyRegistroEntrega,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -49,7 +50,7 @@ appResgistroEntre.post("/post", configGET(),async(req, res) => {
   } */
 
 
-  appResgistroEntre.put("/put/:id", configGET(),async(req, res) => {
+  appResgistroEntre.put("/put/:id", configGET(),proxyRegistroEntrega,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -90,7 +91,7 @@ appResgistroEntre.post("/post", configGET(),async(req, res) => {
     
 });
 
-appResgistroEntre.delete("/delete/:id", configGET(),async(req, res) => {
+appResgistroEntre.delete("/delete/:id", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
