@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 import { Expose } from 'class-transformer';
-import { IsDefined, IsInt, IsDate, IsString, IsNumber } from 'class-validator';
+import { IsDefined, IsInt, IsString, IsNumber, Matches } from 'class-validator';
 export default class AlquilerDto {
     constructor(data) {
         Object.assign(this, data);
@@ -16,8 +16,8 @@ export default class AlquilerDto {
         this.ID_Alquiler = 0;
         this.ID_Cliente_id = 0;
         this.ID_Automovil_id = 0;
-        this.Fecha_Inicio = new Date();
-        this.Fecha_Fin = new Date();
+        this.Fecha_Fin = "";
+        this.Fecha_Inicio = "";
         this.Costo_Total = 0;
         this.Estado = '';
     }
@@ -48,15 +48,17 @@ __decorate([
 ], AlquilerDto.prototype, "ID_Automovil_id", void 0);
 __decorate([
     Expose({ name: 'Fecha_Inicio' }),
-    IsDate(),
+    IsString(),
     IsDefined({ message: 'La Fecha_Inicio es obligatoria' }),
-    __metadata("design:type", Date)
+    Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'La Fecha_Inicio no tiene el formato correcto' }),
+    __metadata("design:type", String)
 ], AlquilerDto.prototype, "Fecha_Inicio", void 0);
 __decorate([
     Expose({ name: 'Fecha_Fin' }),
-    IsDate(),
+    IsString(),
     IsDefined({ message: 'La Fecha_Fin es obligatoria' }),
-    __metadata("design:type", Date)
+    Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'La Fecha_Fin no tiene el formato correcto' }),
+    __metadata("design:type", String)
 ], AlquilerDto.prototype, "Fecha_Fin", void 0);
 __decorate([
     Expose({ name: 'Costo_Total' }),

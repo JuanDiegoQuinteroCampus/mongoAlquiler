@@ -1,5 +1,5 @@
 import { Expose, Transform } from 'class-transformer';
-import { IsDefined, IsInt, IsDate, IsString, IsNumber } from 'class-validator';
+import { IsDefined, IsInt, IsDate, IsString, IsNumber, Matches } from 'class-validator';
 
 export default class AlquilerDto {
     @Expose({ name: '_id' })
@@ -23,14 +23,16 @@ export default class AlquilerDto {
     ID_Automovil_id: number;
 
     @Expose({ name: 'Fecha_Inicio' })
-    @IsDate()
+    @IsString()
     @IsDefined({ message: 'La Fecha_Inicio es obligatoria' })
-    Fecha_Inicio: Date;
+    @Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'La Fecha_Inicio no tiene el formato correcto' })
+    Fecha_Inicio: string;
 
     @Expose({ name: 'Fecha_Fin' })
-    @IsDate()
+    @IsString()
     @IsDefined({ message: 'La Fecha_Fin es obligatoria' })
-    Fecha_Fin: Date;
+    @Matches(/^\d{4}-\d{2}-\d{2}$/, { message: 'La Fecha_Fin no tiene el formato correcto' })
+    Fecha_Fin: string;
 
     @Expose({ name: 'Costo_Total' })
     @IsNumber()
@@ -48,8 +50,8 @@ export default class AlquilerDto {
         this.ID_Alquiler = 0;
         this.ID_Cliente_id = 0;
         this.ID_Automovil_id = 0;
-        this.Fecha_Inicio = new Date();
-        this.Fecha_Fin = new Date();
+        this.Fecha_Fin="";
+        this.Fecha_Inicio="";
         this.Costo_Total = 0;
         this.Estado = '';
     }
