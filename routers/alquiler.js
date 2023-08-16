@@ -7,7 +7,7 @@ import { middlewareVerify, proxyAlquiler } from "../middleware/proxyalquiler.js"
 
 const appAlquiler = Router();
 
-appAlquiler.get("/get", configGET(),proxyAlquiler,  middlewareVerify, async(req, res) => {
+appAlquiler.get("/get", configGET(),  middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     console.log(req.rateLimit);
 
@@ -94,7 +94,7 @@ appAlquiler.put("/put/:id",  configGET(),proxyAlquiler,  middlewareVerify,async(
     
 });
 
-appAlquiler.delete("/delete/:id",  configGET(),proxyAlquiler,   middlewareVerify,async(req, res) => {
+appAlquiler.delete("/delete/:id",  configGET(),   middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -118,7 +118,7 @@ appAlquiler.delete("/delete/:id",  configGET(),proxyAlquiler,   middlewareVerify
 
 // http://localhost:5022/alquiler/get/Disponible
 // Obtener todos los automóviles disponibles para alquiler.
-appAlquiler.get("/get/:Estado",  configGET(), proxyAlquiler, middlewareVerify,async(req, res) => {
+appAlquiler.get("/get/:Estado",  configGET(),  middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -134,7 +134,7 @@ appAlquiler.get("/get/:Estado",  configGET(), proxyAlquiler, middlewareVerify,as
 
 
 //Buscar un alquiler por su id
-appAlquiler.get("/search/alq/:id", configGET(), proxyAlquiler, middlewareVerify,async(req, res) => {
+appAlquiler.get("/search/alq/:id", configGET(),  middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -158,7 +158,7 @@ appAlquiler.get("/search/alq/:id", configGET(), proxyAlquiler, middlewareVerify,
 
 
 // Obtener el costo total de un alquiler específico. 
-appAlquiler.get("/get/costo/:id",configGET(), proxyAlquiler, middlewareVerify,async(req, res) => {
+appAlquiler.get("/get/costo/:id",configGET(),  middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -180,7 +180,7 @@ appAlquiler.get("/get/costo/:id",configGET(), proxyAlquiler, middlewareVerify,as
 
 // Obtener los detalles del alquiler que tiene fecha de inicio en '2023-07-05'.
 
-appAlquiler.get("/get/fecha/:FechaInicio", configGET(),proxyAlquiler,  middlewareVerify, async(req, res) => {
+appAlquiler.get("/get/fecha/:FechaInicio", configGET(),  middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -201,7 +201,7 @@ appAlquiler.get("/get/fecha/:FechaInicio", configGET(),proxyAlquiler,  middlewar
 
 // Obtener los datos de los clientes que realizaron al menos un
 // alquiler.
-appAlquiler.get("/get/clientes/unalq", configGET(),proxyAlquiler,   middlewareVerify,async (req, res) => {
+appAlquiler.get("/get/clientes/unalq", configGET(),   middlewareVerify,async (req, res) => {
     try {
         if (!req.rateLimit) {
             return;
@@ -235,7 +235,7 @@ appAlquiler.get("/get/clientes/unalq", configGET(),proxyAlquiler,   middlewareVe
 });
 
 // Obtener la cantidad total de alquileres registrados en la base de datos. 
-appAlquiler.get("/get/totalalquiler/cantidad", configGET(),proxyAlquiler,   middlewareVerify,async(req, res) => {
+appAlquiler.get("/get/totalalquiler/cantidad", configGET(),   middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -258,7 +258,7 @@ appAlquiler.get("/get/totalalquiler/cantidad", configGET(),proxyAlquiler,   midd
 // .Listar los alquileres con fecha de inicio entre '2023-07-05' y '2023-07-10'.
 
 
-appAlquiler.get("/get/alq/fecha/between/:FechaInicio/:FechaFin", configGET(),proxyAlquiler,   middlewareVerify,async (req, res) => {
+appAlquiler.get("/get/alq/fecha/between/:FechaInicio/:FechaFin", configGET(),   middlewareVerify,async (req, res) => {
     if (!req.rateLimit) {
         return;
     }
