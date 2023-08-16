@@ -3,13 +3,14 @@ import con from '../db/atlas.js'
 /* import { configGET } from "../middleware/limit.js"; */
 import { ObjectId } from "bson";
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxyCliente } from "../middleware/proxyCliente.js";
 
 
 const appCliente = Router();
 
 // http://localhost:5022/cliente/get
 
-appCliente.get("/get", configGET(),async(req, res) => {
+appCliente.get("/get", configGET(), middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     // res.send("hola");
     console.log(req.rateLimit);
@@ -22,7 +23,7 @@ appCliente.get("/get", configGET(),async(req, res) => {
     
 });
 
-appCliente.post("/post", configGET(),async(req, res) => {
+appCliente.post("/post", configGET(), proxyCliente, middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     // res.send("hola");
     console.log(req.rateLimit);
@@ -54,7 +55,7 @@ appCliente.post("/post", configGET(),async(req, res) => {
  */
 
 
-appCliente.put("/put/:id", configGET(),async(req, res) => {
+appCliente.put("/put/:id", configGET(), proxyCliente, middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -80,7 +81,7 @@ appCliente.put("/put/:id", configGET(),async(req, res) => {
     
 });
 
-appCliente.delete("/delete/:id", configGET(),async(req, res) => {
+appCliente.delete("/delete/:id", configGET(), middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -105,7 +106,7 @@ appCliente.delete("/delete/:id", configGET(),async(req, res) => {
 // consultas taller
 
 // Listar los clientes con el DNI específico. 
-appCliente.get("/get/:DNI", configGET(),async(req, res) => {
+appCliente.get("/get/:DNI", configGET(), middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -127,7 +128,7 @@ appCliente.get("/get/:DNI", configGET(),async(req, res) => {
 
 
 // Listar todos los alquileres activos junto con los datos de los clientes relacionados.
-appCliente.get("/get/alquileres/activos", configGET(), async (req, res) => {
+appCliente.get("/get/alquileres/activos", configGET(), middlewareVerify, async (req, res) => {
     try {
         if (!req.rateLimit) {
             return;
