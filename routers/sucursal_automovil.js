@@ -2,12 +2,13 @@ import { Router } from "express";
 import con from '../db/atlas.js'
 import { ObjectId } from "bson";
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxySucursalAuto } from "../middleware/proxySucursalAuto.js";
 
 
 const appSucursalAutomovil = Router();
 
 
-appSucursalAutomovil.get("/get", configGET(),async(req, res) => {
+appSucursalAutomovil.get("/get", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     console.log(req.rateLimit);
     
@@ -19,7 +20,7 @@ appSucursalAutomovil.get("/get", configGET(),async(req, res) => {
     
 });
 
-appSucursalAutomovil.post("/post", configGET(),async(req, res) => {
+appSucursalAutomovil.post("/post", configGET(),proxySucursalAuto,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     // res.send("hola");
     console.log(req.rateLimit);
@@ -45,7 +46,7 @@ appSucursalAutomovil.post("/post", configGET(),async(req, res) => {
   } */
 
 
-  appSucursalAutomovil.put("/put/:id", configGET(),async(req, res) => {
+  appSucursalAutomovil.put("/put/:id", configGET(),proxySucursalAuto,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -72,7 +73,7 @@ appSucursalAutomovil.post("/post", configGET(),async(req, res) => {
 });
 
 
-appSucursalAutomovil.delete("/delete/:id", configGET(),async(req, res) => {
+appSucursalAutomovil.delete("/delete/:id", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
