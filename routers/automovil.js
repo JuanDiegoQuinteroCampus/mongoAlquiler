@@ -1,10 +1,11 @@
 import { Router } from "express";
 import con from '../db/atlas.js'
 import { configGET } from "../limit/limit.js";
+import { proxyAutomovil, middlewareVerify } from "../middleware/proxyAutomovil.js";
 
 const appAutomovil = Router();
 
-appAutomovil.get("/get", configGET(),async(req, res) => {
+appAutomovil.get("/get", configGET(),  middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -17,7 +18,7 @@ appAutomovil.get("/get", configGET(),async(req, res) => {
 });
 
 
-appAutomovil.post("/post", configGET(),async(req, res) => {
+appAutomovil.post("/post", configGET(),proxyAutomovil, middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     // res.send("hola");
     console.log(req.rateLimit);
@@ -31,7 +32,7 @@ appAutomovil.post("/post", configGET(),async(req, res) => {
     
     } catch (error) {
         console.log(error);
-        res.send({ message: "No fue posible ingresar el automovil" });
+        res.send({ message: "No fue posible ingresar el automovil, el id ya existe" });
     }
     
 });
@@ -46,7 +47,7 @@ appAutomovil.post("/post", configGET(),async(req, res) => {
     "Precio_Diario": 34453452525
   } */
 
-appAutomovil.put("/put/:id", configGET(),async(req, res) => {
+appAutomovil.put("/put/:id", configGET(),proxyAutomovil, middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -74,7 +75,7 @@ appAutomovil.put("/put/:id", configGET(),async(req, res) => {
 
 
 
-appAutomovil.delete("/delete/:id", configGET(),async(req, res) => {
+appAutomovil.delete("/delete/:id", configGET(), middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -100,7 +101,7 @@ appAutomovil.delete("/delete/:id", configGET(),async(req, res) => {
 // consultas
 
 // Mostrar todos los automóviles con una capacidad mayor a 5 personas. 
-appAutomovil.get("/get/capacidad/mayor", configGET(),async(req, res) => {
+appAutomovil.get("/get/capacidad/mayor", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -114,7 +115,7 @@ appAutomovil.get("/get/capacidad/mayor", configGET(),async(req, res) => {
 
 
 // Listar todos los automóviles ordenados por marca y modelo.
-appAutomovil.get("/get/orden/marca/modelo", configGET(),async(req, res) => {
+appAutomovil.get("/get/orden/marca/modelo", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -128,7 +129,7 @@ appAutomovil.get("/get/orden/marca/modelo", configGET(),async(req, res) => {
 
 
 // Mostrar los automóviles con capacidad igual a 5 personas y que estén disponibles.
-appAutomovil.get("/get/igual/cantidadPerson", configGET(),async(req, res) => {
+appAutomovil.get("/get/igual/cantidadPerson", configGET(),middlewareVerify,async(req, res) => {
     try {
         if (!req.rateLimit) {
             return;
