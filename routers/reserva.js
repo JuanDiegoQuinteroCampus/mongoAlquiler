@@ -2,12 +2,13 @@ import { Router } from "express";
 import con from '../db/atlas.js'
 import { ObjectId } from "bson";
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxyReserva } from "../middleware/proxyReserva.js";
 
 
 const appReserva = Router();
 
 
-appReserva.get("/get", configGET(),async(req, res) => {
+appReserva.get("/get", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     console.log(req.rateLimit);
     
@@ -19,7 +20,7 @@ appReserva.get("/get", configGET(),async(req, res) => {
     
 });
 
-appReserva.post("/post", configGET(),async(req, res) => {
+appReserva.post("/post", configGET(),proxyReserva,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     // res.send("hola");
     console.log(req.rateLimit);
@@ -64,7 +65,7 @@ appReserva.post("/post", configGET(),async(req, res) => {
   } */
 
 
-appReserva.put("/put/:id", configGET(),async(req, res) => {
+appReserva.put("/put/:id", configGET(),proxyReserva,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -104,7 +105,7 @@ appReserva.put("/put/:id", configGET(),async(req, res) => {
 });
 
 
-appReserva.delete("/delete/:id", configGET(),async(req, res) => {
+appReserva.delete("/delete/:id", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -128,7 +129,7 @@ appReserva.delete("/delete/:id", configGET(),async(req, res) => {
 // Consultas Taller
 // Mostrar todas las reservas pendientes con los datos del cliente y el automóvil reservado.
 
-appReserva.get("/get/pendientes/dataclient", configGET(), async (req, res) => {
+appReserva.get("/get/pendientes/dataclient", configGET(), middlewareVerify,async (req, res) => {
     try {
         if (!req.rateLimit) {
             return;
@@ -198,7 +199,7 @@ appReserva.get("/get/pendientes/dataclient", configGET(), async (req, res) => {
 
 // Listar las reservas pendientes realizadas por un cliente
 // específico. (3)
-appReserva.get("/get/pendiente/clientespecifico/:id", configGET(),async(req, res) => {
+appReserva.get("/get/pendiente/clientespecifico/:id", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
