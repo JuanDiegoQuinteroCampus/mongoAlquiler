@@ -12,6 +12,7 @@ import RegistroDevolucionDTO from '../routers/storage/registro_devolucion.js';
 import RegistroEntregaDTO from '../routers/storage/registro_entrega.js';
 import ReservaDTO from '../routers/storage/reserva.js';
 import SucursalAutoDTO from '../routers/storage/sucursal_automovil.js';
+import SucursalDTO from '../routers/storage/sucursal.js';
 
 
 
@@ -30,11 +31,7 @@ const DTO = (p1) => {
       'registroentrega': RegistroEntregaDTO,
       'reserva': ReservaDTO,
       'sucursalautomovil': SucursalAutoDTO,
-      /*
-      
-      
-      
-      'sucursal': SucursalDto, */
+      'sucursal': SucursalDTO, 
       'mongo': Error
     };
     const inst = match[p1];
