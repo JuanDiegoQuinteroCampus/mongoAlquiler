@@ -7,6 +7,7 @@ import  AlquilerDto from "../routers/storage/alquiler.js" ;
 import AutomovilDto from "../routers/storage/automovil.js"
 import { Error } from "../routers/storage/mongo.js";
 import ClienteDTO from '../routers/storage/cliente.js';
+import EmpleadoDTO from '../routers/storage/empleado.js';
 
 
 dotenv.config("../");
@@ -19,9 +20,8 @@ const DTO = (p1) => {
       'alquiler': AlquilerDto,
       'automovil': AutomovilDto,
       'cliente': ClienteDTO,
+      'empleado': EmpleadoDTO,
       /* 
-      
-      'empleado': EmpleadoDto,
       'registro_devolucion': RegDevolucionDto,
       'registro_entrega': RegEntregaDto,
       'reserva': ReservaDto,
