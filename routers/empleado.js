@@ -3,13 +3,14 @@ import con from '../db/atlas.js'
 /* import { configGET } from "../middleware/limit.js"; */
 import { ObjectId } from "bson";
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxyEmpleado } from "../middleware/proxyEmpleado.js";
 
 
 const appEmpleado = Router();
 
 
 
-appEmpleado.get("/get", configGET(),async(req, res) => {
+appEmpleado.get("/get", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
 
     console.log(req.rateLimit);
@@ -22,7 +23,7 @@ appEmpleado.get("/get", configGET(),async(req, res) => {
     
 });
 
-appEmpleado.post("/post", configGET(),async(req, res) => {
+appEmpleado.post("/post", configGET(), proxyEmpleado,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
 
     console.log(req.rateLimit);
@@ -54,7 +55,7 @@ appEmpleado.post("/post", configGET(),async(req, res) => {
  */
 
 
-appEmpleado.put("/put/:id", configGET(),async(req, res) => {
+appEmpleado.put("/put/:id", configGET(), proxyEmpleado,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -80,7 +81,7 @@ appEmpleado.put("/put/:id", configGET(),async(req, res) => {
     
 });
 
-appEmpleado.delete("/delete/:id", configGET(),async(req, res) => {
+appEmpleado.delete("/delete/:id", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -110,7 +111,7 @@ appEmpleado.delete("/delete/:id", configGET(),async(req, res) => {
 // Consultas
 
 // Listar los empleados con el cargo de "Vendedor". 
-appEmpleado.get("/get/cargo", configGET(),async(req, res) => {
+appEmpleado.get("/get/cargo", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
 
     console.log(req.rateLimit);
@@ -124,7 +125,7 @@ appEmpleado.get("/get/cargo", configGET(),async(req, res) => {
 });
 
 // Mostrar los empleados con cargo de "Gerente" o "Asistente".
-appEmpleado.get("/get/cargo/gerente/asistente", configGET(),async(req, res) => {
+appEmpleado.get("/get/cargo/gerente/asistente", configGET(),middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; 
 
     console.log(req.rateLimit);
