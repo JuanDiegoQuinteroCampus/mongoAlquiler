@@ -11,6 +11,7 @@ import EmpleadoDTO from '../routers/storage/empleado.js';
 import RegistroDevolucionDTO from '../routers/storage/registro_devolucion.js';
 import RegistroEntregaDTO from '../routers/storage/registro_entrega.js';
 import ReservaDTO from '../routers/storage/reserva.js';
+import SucursalAutoDTO from '../routers/storage/sucursal_automovil.js';
 
 
 
@@ -28,10 +29,11 @@ const DTO = (p1) => {
       'registrodevolucion': RegistroDevolucionDTO,
       'registroentrega': RegistroEntregaDTO,
       'reserva': ReservaDTO,
+      'sucursalautomovil': SucursalAutoDTO,
       /*
       
       
-      'sucursal_automovil': SucursalAutoDto,
+      
       'sucursal': SucursalDto, */
       'mongo': Error
     };
