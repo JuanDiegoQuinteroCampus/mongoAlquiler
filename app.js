@@ -21,15 +21,15 @@ app.use(express.json());
 
 app.use("/token", appToken);
 
-app.use("/cliente", appCliente, appVerify);
+app.use("/cliente", appVerify, appCliente );
 app.use("/alquiler", appVerify, appAlquiler );
-app.use("/sucursal", appSucursal, appVerify);
-app.use("/sucursal/automovil", appSucursalAutomovil, appVerify)
-app.use("/reserva", appReserva, appVerify)
-app.use("/automovil", appAutomovil, appVerify)
-app.use("/registrodev", appResgistroDevol, appVerify)
-app.use("/registroentrega", appResgistroEntre, appVerify)
-app.use("/empleado", appEmpleado, appVerify)
+app.use("/sucursal", appVerify, appSucursal);
+app.use("/sucursal/automovil", appVerify, appSucursalAutomovil)
+app.use("/reserva", appVerify, appReserva)
+app.use("/automovil", appVerify, appAutomovil )
+app.use("/registrodev", appVerify, appResgistroDevol)
+app.use("/registroentrega", appVerify, appResgistroEntre)
+app.use("/empleado", appVerify ,appEmpleado)
 
 const config = JSON.parse(process.env.MY_SERVER);
 app.listen(config,()=>{
