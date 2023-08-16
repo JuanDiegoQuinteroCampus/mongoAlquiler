@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import {Router} from 'express';
 import { SignJWT, jwtVerify } from 'jose';
 import  AlquilerDto from "../routers/storage/alquiler.js" ;
+import AutomovilDto from "../routers/storage/automovil.js"
 import { Error } from "../routers/storage/mongo.js";
 
 
@@ -15,7 +16,8 @@ const appVerify = Router();
 const DTO = (p1) => {
     const match = {
       'alquiler': AlquilerDto,
-      /* 'automovil': AutomovilDto,
+      'automovil': AutomovilDto,
+      /* 
       'cliente': ClienteDto,
       'empleado': EmpleadoDto,
       'registro_devolucion': RegDevolucionDto,
