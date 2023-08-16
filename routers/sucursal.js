@@ -2,10 +2,11 @@ import { Router } from "express";
 import con from '../db/atlas.js'
 import { ObjectId } from "bson";
 import { configGET } from "../limit/limit.js";
+import { middlewareVerify, proxySucursal } from "../middleware/sucursal.js";
 
 const appSucursal = Router();
 
-appSucursal.get("/get", configGET(),async(req, res) => {
+appSucursal.get("/get", configGET(),middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -18,7 +19,7 @@ appSucursal.get("/get", configGET(),async(req, res) => {
 });
 
 
-appSucursal.post("/post", configGET(),async(req, res) => {
+appSucursal.post("/post", configGET(),proxySucursal,middlewareVerify,async(req, res) => {
     if (!req.rateLimit) return; ;
     console.log(req.rateLimit);
     
@@ -45,7 +46,7 @@ appSucursal.post("/post", configGET(),async(req, res) => {
 
 
 
-  appSucursal.put("/put/:id", configGET(),async(req, res) => {
+  appSucursal.put("/put/:id", configGET(),proxySucursal,middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -73,7 +74,7 @@ appSucursal.post("/post", configGET(),async(req, res) => {
 
 
 
-appSucursal.delete("/delete/:id", configGET(),async(req, res) => {
+appSucursal.delete("/delete/:id", configGET(),middlewareVerify, async(req, res) => {
     if (!req.rateLimit) return; 
     
     console.log(req.rateLimit);
@@ -100,7 +101,7 @@ appSucursal.delete("/delete/:id", configGET(),async(req, res) => {
 
 // Mostrar la cantidad total de automóviles disponibles en cada
 // sucursal. 
-appSucursal.get("/get/automoviles/disponibles", configGET(), async (req, res) => {
+appSucursal.get("/get/automoviles/disponibles", configGET(),middlewareVerify,  async (req, res) => {
     try {
         if (!req.rateLimit) {
             return;
@@ -145,7 +146,7 @@ appSucursal.get("/get/automoviles/disponibles", configGET(), async (req, res) =>
 
 
 // Mostrar la cantidad total de automóviles en cada sucursal junto con su dirección.
-appSucursal.get("/get/automoviles/total/direccion", configGET(), async (req, res) => {
+appSucursal.get("/get/automoviles/total/direccion", configGET(), middlewareVerify, async (req, res) => {
     try {
         if (!req.rateLimit) {
             return;
